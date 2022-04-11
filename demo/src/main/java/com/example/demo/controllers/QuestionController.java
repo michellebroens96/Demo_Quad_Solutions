@@ -3,6 +3,7 @@ package com.example.demo.controllers;
 import com.example.demo.controllers.interfaces.IQuestionController;
 import com.example.demo.repositories.interfaces.IQuestionRepository;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/questions")
@@ -16,8 +17,10 @@ public class QuestionController implements IQuestionController {
     }
 
     @GetMapping
-    public void getQuestions() {
-
+    public String getQuestions() {
+        String getOpenTDBQ = "https://opentdb.com/api.php?amount=5";
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(getOpenTDBQ, String.class);
     }
 
     @PostMapping("/checkAnswer")

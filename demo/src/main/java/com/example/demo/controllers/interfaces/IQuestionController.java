@@ -1,6 +1,6 @@
 package com.example.demo.controllers.interfaces;
 
 public interface IQuestionController {
-    void getQuestions();
+    String getQuestions();
     void checkAnswer();
 }
