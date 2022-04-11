@@ -24,7 +24,8 @@ public class QuestionController implements IQuestionController {
     }
 
     @PostMapping("/checkAnswer")
-    public void checkAnswer() {
+    public void checkAnswer(String answer) {
+        repository.checkAnswer(answer);
 
     }
 }
