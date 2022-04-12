@@ -1,10 +1,13 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {environment} from "../../../environments/environment";
+import {Question} from "../../models/Question";
+import {Observable} from "rxjs";
+import {Json} from "../../models/Json";
 
 const httpOptions = {
-headers: new HttpHeaders({
+  headers: new HttpHeaders({
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
@@ -17,14 +20,15 @@ headers: new HttpHeaders({
 export class QuestionService {
 
   constructor(private router: Router,
-              private http: HttpClient) { }
-
-  getQuestions(){
-    return this.http.get(`${environment.apiUrl}/questions`, httpOptions);
+              private http: HttpClient) {
   }
 
-  checkAnswer(answer: string){
-      //TODO checks if string == answer from gotten question
+  getQuestions(): Observable<Json> {
+    return this.http.get<Json>(`${environment.apiUrl}/questions`);
+  }
+
+  checkAnswer(answer: string) {
+    //TODO checks if string == answer from gotten question
   }
 }
 

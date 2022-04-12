@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {QuestionService} from "../../services/question/question.service";
+import {Question} from "../../models/Question";
+import {Json} from "../../models/Json";
 
 @Component({
   selector: 'app-question',
@@ -9,21 +11,28 @@ import {QuestionService} from "../../services/question/question.service";
 })
 export class QuestionComponent implements OnInit {
 
-  questions: any;
+  response: Json;
+  questions: Question[] = [];
 
   constructor(private router: Router,
-              private questionService: QuestionService) { }
+              private questionService: QuestionService) {
+  }
 
   ngOnInit(): void {
     this.getQuestions();
   }
 
 
-  getQuestions(){
+  getQuestions() {
     this.questionService.getQuestions().subscribe(
-      data =>{
-        this.questions = data;
+      data => {
+        this.response = data;
+        this.questions = this.response.results;
       }
     )
+  }
+
+  getAnswersAndRandomize() {
+
   }
 }

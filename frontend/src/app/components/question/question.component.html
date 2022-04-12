@@ -1,1 +1,19 @@
-<p>question works!</p>
+<div class="container">
+  <div class="card border-primary mb-3 center-block" style="max-width: 60rem ">
+    <div class="card-header" style="text-align: center">Questions</div>
+    <div class="card-body">
+      <div>
+        <div *ngFor="let q of questions">
+          <div>
+            <p>{{q.question}}</p>
+            <!-- <select id="target-env" [(ngModel)]="answerOption">
+               <option *ngFor="let t of targetList">
+                 {{t}}
+               </option>
+             </select> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
