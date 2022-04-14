@@ -8,8 +8,8 @@
             <h5 [innerHTML]="q.question"></h5>
             <h6>Difficulty: {{q.difficulty}}</h6>
             <select id="answer" [(ngModel)]="selectedOptions">
-              <option *ngFor="let a of q.incorrect_answers" [ngValue]="a">
-                {{a}}
+              <option *ngFor="let a of q.incorrect_answers" [ngValue]="a" [innerHTML]="a">
+
               </option>
               <option>{{q.correct_answer}}</option>
             </select>
