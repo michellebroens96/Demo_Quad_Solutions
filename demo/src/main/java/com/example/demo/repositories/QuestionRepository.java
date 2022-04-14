@@ -1,5 +1,6 @@
 package com.example.demo.repositories;
 
+import com.example.demo.models.Question;
 import com.example.demo.repositories.interfaces.IQuestionRepository;
 import org.springframework.stereotype.Repository;
 
@@ -18,7 +19,11 @@ public class QuestionRepository implements IQuestionRepository {
     }
 
     @Override
-    public void checkAnswer(String answer) {
+    public boolean checkAnswer(String answer, Question question) {
         //TODO check if the answer is correct
+        if (answer == question.getCorrect_answer()){
+            return true;
+        }
+        return false;
     }
 }

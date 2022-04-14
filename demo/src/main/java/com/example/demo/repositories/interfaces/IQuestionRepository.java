@@ -1,6 +1,8 @@
 package com.example.demo.repositories.interfaces;
 
+import com.example.demo.models.Question;
+
 public interface IQuestionRepository {
     void getQuestions();
-    void checkAnswer(String answer);
+    boolean checkAnswer(String answer, Question question);
 }

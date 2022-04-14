@@ -27,8 +27,9 @@ export class QuestionService {
     return this.http.get<Json>(`${environment.apiUrl}/questions`);
   }
 
-  checkAnswer(answer: string) {
+  checkAnswer(answer: string, question: Question) {
     //TODO checks if string == answer from gotten question
+    return this.http.post(` ${environment.apiUrl}/questions/checkAnswer`, httpOptions);
   }
 }
 

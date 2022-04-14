@@ -14,6 +14,14 @@ export class QuestionComponent implements OnInit {
   response: Json;
   questions: Question[] = [];
 
+  selectedOptions: string[] =[];
+  answerOption: string;
+
+  htmlEntities ={
+    "'": "&#039;",
+    '"': "&quot;"
+  }
+
   constructor(private router: Router,
               private questionService: QuestionService) {
   }
@@ -21,7 +29,6 @@ export class QuestionComponent implements OnInit {
   ngOnInit(): void {
     this.getQuestions();
   }
-
 
   getQuestions() {
     this.questionService.getQuestions().subscribe(
@@ -32,7 +39,8 @@ export class QuestionComponent implements OnInit {
     )
   }
 
-  getAnswersAndRandomize() {
-
+  onSubmit(){
+    this.answerOption = (document.getElementById("answer")as HTMLInputElement).value;
   }
+
 }

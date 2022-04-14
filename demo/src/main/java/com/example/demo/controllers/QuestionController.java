@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.controllers.interfaces.IQuestionController;
+import com.example.demo.models.Question;
 import com.example.demo.repositories.interfaces.IQuestionRepository;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -24,8 +25,10 @@ public class QuestionController implements IQuestionController {
     }
 
     @PostMapping("/checkAnswer")
-    public void checkAnswer(String answer) {
-        repository.checkAnswer(answer);
-
+    public void checkAnswer(String answer, Question question) {
+        if ( repository.checkAnswer(answer, question) == true){
+            //TODO answer is correct, so do fun stuff
+            return;
+        }
     }
 }
