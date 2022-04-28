@@ -27,9 +27,9 @@ export class QuestionService {
     return this.http.get<Json>(`${environment.apiUrl}/questions`);
   }
 
-  checkAnswer(answer: string, question: Question) {
+  checkAnswer(answer: string, question: string): Observable<boolean>{
     //TODO checks if string == answer from gotten question
-    return this.http.post(` ${environment.apiUrl}/questions/checkAnswer`, httpOptions);
+    return this.http.post<boolean>(` ${environment.apiUrl}/questions/checkAnswer`, httpOptions);
   }
 }
 

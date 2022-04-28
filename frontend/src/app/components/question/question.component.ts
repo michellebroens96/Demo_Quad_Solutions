@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {QuestionService} from "../../services/question/question.service";
 import {Question} from "../../models/Question";
 import {Json} from "../../models/Json";
+import {FormBuilder} from "@angular/forms";
 
 @Component({
   selector: 'app-question',
@@ -13,14 +14,11 @@ export class QuestionComponent implements OnInit {
 
   response: Json;
   questions: Question[] = [];
+  answers: string[] = [];
+  selectedAnswer: string = "";
+  //questionForm = this.fb.group({
 
-  selectedOptions: string[] =[];
-  answerOption: string;
-
-  htmlEntities ={
-    "'": "&#039;",
-    '"': "&quot;"
-  }
+  //})
 
   constructor(private router: Router,
               private questionService: QuestionService) {
@@ -39,8 +37,21 @@ export class QuestionComponent implements OnInit {
     )
   }
 
-  onSubmit(){
-    this.answerOption = (document.getElementById("answer")as HTMLInputElement).value;
+  onSubmit() {
+
+  }
+
+  saveAnswer(question: string, answer: string) {
+    console.log(answer)
+    if (answer != "") {
+      this.questionService.checkAnswer(answer, question).subscribe(
+        data => {
+          if (data) {
+            alert("good answer")
+          }
+        }
+      )
+    }
   }
 
 }
