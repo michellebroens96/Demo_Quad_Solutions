@@ -4,5 +4,5 @@ import com.example.demo.models.Question;
 
 public interface IQuestionController {
     String getQuestions();
-    void checkAnswer(String answer, Question question);
+    boolean checkAnswer(String answer, String question);
 }

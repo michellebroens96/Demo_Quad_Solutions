@@ -19,9 +19,15 @@ public class QuestionRepository implements IQuestionRepository {
     }
 
     @Override
-    public boolean checkAnswer(String answer, Question question) {
-        //TODO check if the answer is correct
-        if (answer == question.getCorrect_answer()){
+    public Question getQuestionByName(String question) {
+        return null;
+    }
+
+    @Override
+    public boolean checkAnswer(String answer, String question) {
+        //TODO get question by name
+        Question newQuestion = getQuestionByName(question);
+        if (answer == newQuestion.getCorrect_answer()){
             return true;
         }
         return false;

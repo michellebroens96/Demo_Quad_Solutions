@@ -4,5 +4,6 @@ import com.example.demo.models.Question;
 
 public interface IQuestionRepository {
     void getQuestions();
-    boolean checkAnswer(String answer, Question question);
+    Question getQuestionByName(String question);
+    boolean checkAnswer(String answer, String question);
 }

@@ -25,10 +25,7 @@ public class QuestionController implements IQuestionController {
     }
 
     @PostMapping("/checkAnswer")
-    public void checkAnswer(String answer, Question question) {
-        if ( repository.checkAnswer(answer, question) == true){
-            //TODO answer is correct, so do fun stuff
-            return;
-        }
+    public boolean checkAnswer(String answer, String question) {
+        return repository.checkAnswer(answer, question);
     }
 }
