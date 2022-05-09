@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.controllers.interfaces.IQuestionController;
+import com.example.demo.models.QA;
 import com.example.demo.models.Question;
 import com.example.demo.repositories.interfaces.IQuestionRepository;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +26,7 @@ public class QuestionController implements IQuestionController {
     }
 
     @PostMapping("/checkAnswer")
-    public boolean checkAnswer(String answer, String question) {
-        return repository.checkAnswer(answer, question);
+    public boolean checkAnswer(@RequestBody QA qa) {
+        return repository.checkAnswer(qa);
     }
 }

@@ -5,6 +5,7 @@ import {environment} from "../../../environments/environment";
 import {Question} from "../../models/Question";
 import {Observable} from "rxjs";
 import {Json} from "../../models/Json";
+import {QA} from "../../models/QA";
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -27,9 +28,9 @@ export class QuestionService {
     return this.http.get<Json>(`${environment.apiUrl}/questions`);
   }
 
-  checkAnswer(answer: string, question: string): Observable<boolean>{
+  checkAnswer(qa: QA): Observable<boolean> {
     //TODO checks if string == answer from gotten question
-    return this.http.post<boolean>(` ${environment.apiUrl}/questions/checkAnswer`, httpOptions);
+    return this.http.post<boolean>(` ${environment.apiUrl}/questions/checkAnswer`, qa, httpOptions);
   }
 }
 

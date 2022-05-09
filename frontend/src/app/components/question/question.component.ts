@@ -4,6 +4,7 @@ import {QuestionService} from "../../services/question/question.service";
 import {Question} from "../../models/Question";
 import {Json} from "../../models/Json";
 import {FormBuilder} from "@angular/forms";
+import {QA} from "../../models/QA";
 
 @Component({
   selector: 'app-question',
@@ -16,15 +17,14 @@ export class QuestionComponent implements OnInit {
   questions: Question[] = [];
   answers: string[] = [];
   selectedAnswer: string = "";
-  //questionForm = this.fb.group({
-
-  //})
+  qa: QA;
 
   constructor(private router: Router,
               private questionService: QuestionService) {
   }
 
   ngOnInit(): void {
+    this.qa = new QA();
     this.getQuestions();
   }
 
@@ -42,9 +42,11 @@ export class QuestionComponent implements OnInit {
   }
 
   saveAnswer(question: string, answer: string) {
-    console.log(answer)
     if (answer != "") {
-      this.questionService.checkAnswer(answer, question).subscribe(
+      this.qa.question = question;
+      this.qa.answer = answer;
+      this.qa.questions = this.questions
+      this.questionService.checkAnswer(this.qa).subscribe(
         data => {
           if (data) {
             alert("good answer")
