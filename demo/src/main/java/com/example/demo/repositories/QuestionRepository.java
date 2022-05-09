@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 @Repository
 public class QuestionRepository implements IQuestionRepository {
@@ -19,8 +20,8 @@ public class QuestionRepository implements IQuestionRepository {
     @Override
     public Question getQuestionByName(QA qa) {
         List<Question> questions = Arrays.asList(qa.getQuestions());
-        for (Question q: questions){
-            if (q.getQuestion() == qa.getQuestion()){
+        for (Question q : questions) {
+            if (q.getQuestion().contains(qa.getQuestion())) {
                 return q;
             }
         }
@@ -30,7 +31,7 @@ public class QuestionRepository implements IQuestionRepository {
     @Override
     public boolean checkAnswer(QA qa) {
         Question newQuestion = getQuestionByName(qa);
-        if (qa.getAnswer() == newQuestion.getCorrect_answer()){
+        if (Objects.equals(newQuestion.getCorrect_answer(), qa.getAnswer())) {
             return true;
         }
         return false;

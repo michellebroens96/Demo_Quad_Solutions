@@ -48,7 +48,8 @@ export class QuestionComponent implements OnInit {
       this.qa.questions = this.questions
       this.questionService.checkAnswer(this.qa).subscribe(
         data => {
-          if (data) {
+          console.log(data)
+          if (data == true) {
             alert("good answer")
           }
         }
