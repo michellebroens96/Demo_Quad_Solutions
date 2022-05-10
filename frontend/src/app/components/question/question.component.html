@@ -5,7 +5,7 @@
       <div>
         <div *ngFor="let q of questions">
           <div>
-            <h5 [innerHTML]="q.question" class="lead"></h5>
+            <h5 [innerHTML]="q.question" class="lead" [ngClass]="{greenClass: checkedAnswer, redClass: !checkedAnswer}"></h5>
             <h6>Difficulty: {{q.difficulty}}</h6>
             <select id="{{q.question}}" class="form-select" (click)="this.saveAnswer(q.question, selectedAnswer)" [(ngModel)]="selectedAnswer" >
               <option *ngFor="let a of q.incorrect_answers" [ngValue]="a" [innerHTML]="a">
@@ -13,10 +13,6 @@
               <option [ngValue]="q.correct_answer" [innerHTML]="q.correct_answer">{{q.correct_answer}}</option>
             </select>
           </div>
-        </div>
-        <div>
-          <br>
-          <button type="button" (click)="onSubmit()" class="btn btn-primary">Submit answers</button>
         </div>
       </div>
     </div>

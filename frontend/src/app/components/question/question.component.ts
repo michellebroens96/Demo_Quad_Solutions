@@ -9,8 +9,13 @@ import {QA} from "../../models/QA";
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
-  styleUrls: ['./question.component.css']
+  styleUrls: ['./question.component.css'],
+  styles: [
+    `.greenClass { background-color: green }
+    .redClass { background-color: red }`
+  ]
 })
+
 export class QuestionComponent implements OnInit {
 
   response: Json;
@@ -18,6 +23,7 @@ export class QuestionComponent implements OnInit {
   answers: string[] = [];
   selectedAnswer: string = "";
   qa: QA;
+  checkedAnswer: boolean;
 
   constructor(private router: Router,
               private questionService: QuestionService) {
@@ -48,9 +54,9 @@ export class QuestionComponent implements OnInit {
       this.qa.questions = this.questions
       this.questionService.checkAnswer(this.qa).subscribe(
         data => {
-          console.log(data)
-          if (data == true) {
-            alert("good answer")
+          if (data) {
+            this.checkedAnswer = data;
+            alert("correct answer")
           }
         }
       )
